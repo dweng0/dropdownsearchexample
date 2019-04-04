@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import CountryItem from './CountryItem';
 
 class CountryList extends React.Component {
@@ -17,6 +19,9 @@ class CountryList extends React.Component {
         this.state.searchQuery = props.searchQuery;
     }
 
+    /**
+    * set css based on active state
+     */
     setClassByState() {
         let style = "ui fluid search selection dropdown";
         if(this.state.active)
@@ -25,6 +30,7 @@ class CountryList extends React.Component {
         }
         return style;
     }
+
 
     setMenuClassByState() {
         let style = "menu";
@@ -82,4 +88,8 @@ class CountryList extends React.Component {
     }
 }
 
-export default CountryList
+const mapStateToProps = (state) => {
+    return { countries: state.countries};
+};
+
+export default connect(mapStateToProps)(CountryList);

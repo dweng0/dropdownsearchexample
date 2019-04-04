@@ -1,4 +1,6 @@
-export const selectedCountryReducer = (selectedCountry = null, action) => {
+import { combineReducers } from 'redux';
+
+const selectedCountryReducer = (selectedCountry = null, action) => {
     let selection = selectedCountry;
     if(action.type === 'COUNTRY_SELECTED')
     {
@@ -6,8 +8,9 @@ export const selectedCountryReducer = (selectedCountry = null, action) => {
     }
     return selection;
 }
+
 //its a static array, its a bit overkill. But good to show as an example
-export const countryReducer = () => {
+const countryReducer = () => {
     return [
     "Bangladesh",
     "Belgium",
@@ -260,3 +263,8 @@ export const countryReducer = () => {
     "Mozambique"
   ]
 }
+
+export default combineReducers({
+    countries: countryReducer,
+    selectedCountry: selectedCountryReducer
+})
