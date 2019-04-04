@@ -69,7 +69,6 @@ class CountryList extends React.Component {
     }
 
     render() {
-
         return (
             <div className={this.setClassByState()} onClick={this.searchClicked} onBlur={this.onBlur} >
                 <input type="hidden" name="country"/>
