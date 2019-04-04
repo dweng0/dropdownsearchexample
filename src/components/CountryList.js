@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import { selectCountry } from '../actions';
 import CountryItem from './CountryItem';
 
 class CountryList extends React.Component {
@@ -43,7 +43,7 @@ class CountryList extends React.Component {
 
     getCountries() {
         return this.state.filteredCountries.map((country, index) => {
-            return <CountryItem key={index} country={country}/>
+            return <CountryItem key={index} country={country} selectCountry={this.props.selectCountry}/>
         });
     }
 
@@ -89,7 +89,8 @@ class CountryList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state);
     return { countries: state.countries};
 };
 
-export default connect(mapStateToProps)(CountryList);
+export default connect(mapStateToProps, {selectCountry})(CountryList);
