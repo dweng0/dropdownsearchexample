@@ -3,13 +3,18 @@ import CountryItem from './CountryItem';
 
 class CountryList extends React.Component {
 
-    componentDidMount(props) {
-        const countries = props.countries || [];
-        this.setState = {
-            active: false,
-            countries: countries,
-            searchQuery: props.query || ""
-        };
+    state = {
+        active: false,
+        countries: [],
+        filteredList: [],
+        searchQuery:""
+    }
+
+    constructor(props){
+        super(props)
+        this.state.countries = props.countries || [];
+        this.state.filteredCountries = props.countries || [];
+        this.state.searchQuery = props.searchQuery;
     }
 
     setClassByState() {
@@ -30,35 +35,46 @@ class CountryList extends React.Component {
         return style;
     }
 
-
     getCountries() {
-        return this.state.countries.map((country, index) => {
+        return this.state.filteredCountries.map((country, index) => {
             return <CountryItem key={index} country={country}/>
         });
     }
 
-    render(){
+     searchClicked = () => {
+        this.setState({
+            active: true
+        });
+    }
 
-        const searchClicked = () => {
-            this.setState({
-                active: true
-            });
-        }
-        const onBlur = () => {
-            this.setState({
-                active: false
-            });
-        }
+    onBlur = () => {
+        this.setState({
+            active: false
+        });
+    }
 
-        const filterCountries = (event) => {
-            this.setState({searchQuery: event.target.value});
-            console.log(this.state.searchQuery);
+    filterCountries = (event) => {
+        this.setState({
+            searchQuery: event.target.value
+        });
+    }
+
+    componentDidUpdate = (previousProps, prevState, snapshot) => {
+        if (this.state.searchQuery !== prevState.searchQuery) {
+            const filteredCountries = this.state.countries.filter((country) => {
+                return country.toLowerCase().includes(this.state.searchQuery.toLocaleLowerCase());
+            });
+            this.setState({filteredCountries: filteredCountries});
         }
+    }
+
+    render() {
+
         return (
-            <div className={this.setClassByState()} onClick={searchClicked} onBlur={onBlur} >
+            <div className={this.setClassByState()} onClick={this.searchClicked} onBlur={this.onBlur} >
                 <input type="hidden" name="country"/>
                 <i className="dropdown icon"></i>
-                <input className="search" autoComplete="off" tabIndex="0" placeholder="Search..." onChange={filterCountries}/>
+                <input className="search" autoComplete="off" tabIndex="0" placeholder="Search..." onChange={this.filterCountries}/>
                 <div className={this.setMenuClassByState()}  style={{display: (this.state.active) ? "block!important" : "none"}}>
                     {this.getCountries()}
                 </div>
