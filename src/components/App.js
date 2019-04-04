@@ -4,7 +4,7 @@ import Countries from '../Constants/Countries'
 
 const App = () => {
     return(
-        <div className="ui one column stackable center aligned page grid">
+        <div className="ui one column stackable center aligned page grid" style={{margin:'20px'}}>
         <div className="column twelve wide">
             <CountryList countries={Countries}/>
         </div>
