@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import {  updateSearch } from '../actions';
 import CountryItem from './CountryItem';
+
+import content from '../locale/translationsource';
 
 class CountryList extends React.Component {
 
@@ -67,7 +70,7 @@ class CountryList extends React.Component {
             <div className={this.setCssClassByState()} onClick={this.searchClicked} onBlur={this.onBlur} >
                 <i className="dropdown icon"></i>
                 <input name="country" type="hidden" value={this.props.query} />
-                <input value={this.props.query} className="search" autoComplete="off" name="country" tabIndex="0" placeholder="Search..." onChange={(event) => {this.props.updateSearch(event.target.value);}}/>
+                <input value={this.props.query} className="search" autoComplete="off" name="country" tabIndex="0" placeholder={content.searchPlaceholder} onChange={(event) => {this.props.updateSearch(event.target.value);}}/>
                 <div className={this.setMenuCssClassByState()} style={{display: (this.state.active) ? "block!important" : "none"}}>
                     {this.getCountries()}
                 </div>
@@ -77,7 +80,7 @@ class CountryList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return { 
+    return {
         countries: state.countries,
         query: state.searchQuery
     };
