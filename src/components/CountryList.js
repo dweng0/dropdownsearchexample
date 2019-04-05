@@ -74,6 +74,13 @@ class CountryList extends React.Component {
         }
     }
 
+    getSearchBox = () => {
+        if(this.props.selectCountry)
+        {
+            return <input value={this.props.selectCountry} className="search" autoComplete="off" tabIndex="0" placeholder="Search..." onChange={this.filterCountries}/>
+        }
+    }
+
     render() {
         return (
             <div className={this.setClassByState()} onClick={this.searchClicked} onBlur={this.onBlur} >
@@ -89,7 +96,6 @@ class CountryList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return { countries: state.countries};
 };
 
