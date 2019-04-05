@@ -84,10 +84,9 @@ class CountryList extends React.Component {
     render() {
         return (
             <div className={this.setClassByState()} onClick={this.searchClicked} onBlur={this.onBlur} >
-                <input type="hidden" name="country"/>
                 <i className="dropdown icon"></i>
-                <input className="search" autoComplete="off" tabIndex="0" placeholder="Search..." onChange={this.filterCountries}/>
-                <div className={this.setMenuClassByState()}  style={{display: (this.state.active) ? "block!important" : "none"}}>
+                <input className="search" autoComplete="off" name="country" tabIndex="0" placeholder="Search..." onChange={this.filterCountries}/>
+                <div className={this.setMenuClassByState()} style={{display: (this.state.active) ? "block!important" : "none"}}>
                     {this.getCountries()}
                 </div>
             </div>
