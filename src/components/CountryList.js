@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {  updateSearch } from '../actions';
+import { updateSearch } from '../actions';
 import CountryItem from './CountryItem';
 
 class CountryList extends React.Component {
@@ -77,7 +77,7 @@ class CountryList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return { 
+    return {
         countries: state.countries,
         query: state.searchQuery
     };
