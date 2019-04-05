@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 
-const selectedCountryReducer = (selectedCountry = null, action) => {
-    let selection = selectedCountry;
-    if(action.type === 'COUNTRY_SELECTED')
+const updateSearchQueryReducer = (query = null, action) => {
+    let selection = query || "";
+    if(action.type === 'QUERY_UPDATED')
     {
         selection = action.payload;
     }
@@ -266,5 +266,5 @@ const countryReducer = () => {
 
 export default combineReducers({
     countries: countryReducer,
-    selectedCountry: selectedCountryReducer
+    searchQuery: updateSearchQueryReducer
 })

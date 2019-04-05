@@ -1,7 +1,7 @@
-export const selectCountry = (country) => {
-    console.log(country);
-    return {
-        type: 'COUNTRY_SELECTED',
-        payload: country
+export  const updateSearch = (query) => {
+    console.log(query);
+    return{
+        type: 'QUERY_UPDATED',
+        payload: query
     };
 };
