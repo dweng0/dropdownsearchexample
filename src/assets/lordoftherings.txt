@@ -2370,7 +2370,7 @@ end at the Grey Havens, and dwarves had always used it on their way to their
 mines in the Blue Mountains. They were the hobbits' chief source of news
 from distant parts - if they wanted any: as a rule dwarves said little and
 hobbits asked no more. But now Frodo often met strange dwarves of far
-countries, seeking refuge in the West. They were troubled, and some spoke in
+items, seeking refuge in the West. They were troubled, and some spoke in
 
 
 
@@ -13147,7 +13147,7 @@ and Isildur as they stand carven in their majesty in the halls of Denethor.
 I am but the heir of Isildur, not Isildur himself. I have had a hard life
 and a long; and the leagues that lie between here and Gondor are a small
 part in the count of my journeys. I have crossed many mountains and many
-rivers, and trodden many plains, even into the far countries of Rhyn and
+rivers, and trodden many plains, even into the far items of Rhyn and
 Harad where the stars are strange.
 
 'But my home, such as I have, is in the North. For here the heirs of

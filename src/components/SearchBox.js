@@ -2,22 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import {  updateSearch } from '../actions';
-import CountryItem from './CountryItem';
+import SearchItem from './SearchItem';
 
 import content from '../locale/translationsource';
 
-class CountryList extends React.Component {
+class SearchBox extends React.Component {
 
     state = {
         active: false,
-        countries: [],
+        items: [],
         filteredList: [],
     }
 
     constructor(props){
         super(props)
-        this.state.countries = props.countries || [];
-        this.state.filteredCountries = props.countries || [];
+        this.state.items = props.items || [];
+        this.state.filteredItems = props.items || [];
     }
 
     setCssClassByState() {
@@ -50,18 +50,18 @@ class CountryList extends React.Component {
         });
     }
 
-    getCountries() {
-        return this.state.filteredCountries.map((country, index) => {
-            return <CountryItem key={index} country={country} updateSearch={this.props.updateSearch}/>
+    getItems() {
+        return this.state.filteredItems.map((item, index) => {
+            return <SearchItem key={index} item={item} updateSearch={this.props.updateSearch}/>
         });
     }
 
     componentDidUpdate = (previousProps, prevState, snapshot) => {
         if (this.props.query !== previousProps.query) {
-            const filteredCountries = this.state.countries.filter((country) => {
-                return country.toLowerCase().includes(this.props.query.toLocaleLowerCase());
+            const filteredItems = this.state.items.filter((item) => {
+                return item.toLowerCase().includes(this.props.query.toLocaleLowerCase());
             });
-            this.setState({filteredCountries: filteredCountries});
+            this.setState({filteredItems: filteredItems});
         }
     }
 
@@ -69,10 +69,10 @@ class CountryList extends React.Component {
         return (
             <div className={this.setCssClassByState()} onClick={this.searchClicked} onBlur={this.onBlur} >
                 <i className="dropdown icon"></i>
-                <input name="country" type="hidden" value={this.props.query} />
-                <input value={this.props.query} className="search" autoComplete="off" name="country" tabIndex="0" placeholder={content.searchPlaceholder} onChange={(event) => {this.props.updateSearch(event.target.value);}}/>
+                <input name="item" type="hidden" value={this.props.query} />
+                <input value={this.props.query} className="search" autoComplete="off" name="item" tabIndex="0" placeholder={content.searchPlaceholder} onChange={(event) => {this.props.updateSearch(event.target.value);}}/>
                 <div className={this.setMenuCssClassByState()} style={{display: (this.state.active) ? "block!important" : "none"}}>
-                    {this.getCountries()}
+                    {this.getItems()}
                 </div>
             </div>
         );
@@ -81,9 +81,9 @@ class CountryList extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        countries: state.countries,
+        items: state.items,
         query: state.searchQuery
     };
 };
 
-export default connect(mapStateToProps, {updateSearch})(CountryList);
+export default connect(mapStateToProps, {updateSearch})(SearchBox);
