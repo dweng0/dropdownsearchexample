@@ -2,22 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import {  updateSearch } from '../actions';
-import CountryItem from './CountryItem';
+import SearchListItem from './SearchListItem';
 
 import content from '../locale/translationsource';
 
-class CountryList extends React.Component {
+class SearchBox extends React.Component {
 
     state = {
         active: false,
-        countries: [],
+        searchableArray: [],
         filteredList: [],
     }
 
     constructor(props){
         super(props)
-        this.state.countries = props.countries || [];
-        this.state.filteredCountries = props.countries || [];
+        this.state.searchableArray = props.searchableArray || [];
+        this.state.filteredResults = props.searchableArray || [];
     }
 
     setCssClassByState() {
@@ -50,18 +50,18 @@ class CountryList extends React.Component {
         });
     }
 
-    getCountries() {
-        return this.state.filteredCountries.map((country, index) => {
-            return <CountryItem key={index} country={country} updateSearch={this.props.updateSearch}/>
+    getsearchableArray() {
+        return this.state.filteredResults.map((result, index) => {
+            return <SearchListItem key={index} result={result} updateSearch={this.props.updateSearch}/>
         });
     }
 
     componentDidUpdate = (previousProps, prevState, snapshot) => {
         if (this.props.query !== previousProps.query) {
-            const filteredCountries = this.state.countries.filter((country) => {
+            const filteredResults = this.state.searchableArray.filter((country) => {
                 return country.toLowerCase().includes(this.props.query.toLocaleLowerCase());
             });
-            this.setState({filteredCountries: filteredCountries});
+            this.setState({filteredResults: filteredResults});
         }
     }
 
@@ -72,7 +72,7 @@ class CountryList extends React.Component {
                 <input name="country" type="hidden" value={this.props.query} />
                 <input value={this.props.query} className="search" autoComplete="off" name="country" tabIndex="0" placeholder={content.searchPlaceholder} onChange={(event) => {this.props.updateSearch(event.target.value);}}/>
                 <div className={this.setMenuCssClassByState()} style={{display: (this.state.active) ? "block!important" : "none"}}>
-                    {this.getCountries()}
+                    {this.getsearchableArray()}
                 </div>
             </div>
         );
@@ -81,9 +81,9 @@ class CountryList extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        countries: state.countries,
+        searchableArray: state.results,
         query: state.searchQuery
     };
 };
 
-export default connect(mapStateToProps, {updateSearch})(CountryList);
+export default connect(mapStateToProps, {updateSearch})(SearchBox);

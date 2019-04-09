@@ -10,7 +10,7 @@ const updateSearchQueryReducer = (query = null, action) => {
 }
 
 //its a static array, its a bit overkill. But good to show as an example
-const countryReducer = () => {
+const resultsReducer = () => {
     return [
     "Bangladesh",
     "Belgium",
@@ -265,6 +265,6 @@ const countryReducer = () => {
 }
 
 export default combineReducers({
-    countries: countryReducer,
+    results: resultsReducer,
     searchQuery: updateSearchQueryReducer
 })
