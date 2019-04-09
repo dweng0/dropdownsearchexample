@@ -11,7 +11,7 @@ const Search = ({location}) => {
                 <div className="column twelve wide">
                     <SearchBox />
                 </div>
-            </div>
+            </div> 
              <div className="ui one column stackable center aligned page grid" style={{margin:'20px'}}>
                 <div className="column twelve wide">
                    <input className="ui button" type="file" />
