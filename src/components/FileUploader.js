@@ -61,6 +61,7 @@ class FileUploader extends React.Component {
             else
             {
                 this.props.updateWordArray(words)
+                 this.setState({uploadDetails: content.uploadSuccess});
             }
 
         }

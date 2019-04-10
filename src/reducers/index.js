@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 let wordsArray = [];
-let selectedWord;
+let selectedWord = "";
 const updateSearchQueryReducer = (query = null, action) => {
     let selection = query || "";
     if(action.type === 'QUERY_UPDATED')
@@ -25,13 +25,17 @@ const updateWordArray = (foundWords = null, action) => {
     return selection;
 }
 
+const selectedWordReducer = () =>{
+    return selectedWord;
+}
+
 const resultsReducer = () => {
-    return wordsArray
+    return wordsArray;
 }
 
 export default combineReducers({
     results: resultsReducer,
     searchQuery: updateSearchQueryReducer,
     wordsLoader: updateWordArray,
-    selectedWord: selectedWord
+    selectedWord: selectedWordReducer
 })

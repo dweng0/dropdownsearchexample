@@ -22,7 +22,7 @@ class SearchResults extends React.Component {
         }
         else
         {
-            return <div className="item">{content.initialDropDownText}</div>
+            return <div className="header"></div>
         }
 
     }
@@ -32,7 +32,7 @@ class SearchResults extends React.Component {
             <div className="ui middle aligned animated list">
                 <div className="item">
                     <div className="content">
-                    <div className="header">You selected: </div>
+                    {this.renderResults()}
                     </div>
                 </div>
             </div>

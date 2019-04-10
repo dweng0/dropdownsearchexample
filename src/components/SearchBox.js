@@ -75,8 +75,9 @@ class SearchBox extends React.Component {
 
         //apply query if one is found
         if (this.props.query !== previousProps.query) {
+            let query = this.props.query.toLowerCase();
             const filteredResults = this.state.searchableArray.filter((word) => {
-                return word.toLowerCase().includes(this.props.query.toLocaleLowerCase());
+                return word.name.toLowerCase().includes(query);
             });
             this.setState({filteredResults: filteredResults});
         }
@@ -86,7 +87,7 @@ class SearchBox extends React.Component {
         return (
             <div className={this.setCssClassByState()} onClick={this.searchClicked} onBlur={this.onBlur} >
                 <i className="dropdown icon"></i>
-                <input name="wordQuery" type="hidden" value={this.props.query} />
+                <input name="wordQuery" type="hidden" value={this.props.query.name} />
                 <input value={this.props.query} className="search" autoComplete="off" name="wordQuery" tabIndex="0" placeholder={content.searchPlaceholder} onChange={(event) => {this.props.updateSearch(event.target.value);}}/>
                 <div className={this.setMenuCssClassByState()} style={{display: (this.state.active) ? "block!important" : "none"}}>
                     {this.getsearchableArray()}

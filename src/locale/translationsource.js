@@ -5,6 +5,7 @@ export default {
     uploadText: "Upload text file",
     uploadOk: "",
     uploadWarning: "No text could be found in the file",
+    uploadSuccess: "File uploaded succesfully, use the search box to begin",
     initialDropDownText: "No text file has been uploaded",
     wordSelected: (word, pluralOr) => {
         return "You have selected ${word.name}, which has been used ${word.timesUsed} ${pluralOr}";
