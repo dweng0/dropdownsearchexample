@@ -10,8 +10,7 @@
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
-    "redux": "^4.0.1",
-    "simple-react-dropzone": "^0.1.20"
+    "redux": "^4.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

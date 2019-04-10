@@ -1,26 +1,38 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
+import content from '../locale/translationsource';
 class SearchResults extends React.Component {
+    state = {
+       selectedWord: ""
+    }
+
+    componentDidUpdate = (previousProps, prevState, snapshot) => {
+        if(this.props.selectedWord && this.props.selectedWord.name)
+        {
+            this.setState({ selectedWord: this.props.selectedWord});
+        }
+    }
+
+     renderResults() {
+        if(this.state.selectedWord)
+        {
+            let pluralOrSingularTime = (this.state.selectedWord.timesUsed > 1) ? 'times' : 'time';
+            return <div className="header">{content.wordSelected(this.state.selectedWord, pluralOrSingularTime)} </div>
+        }
+        else
+        {
+            return <div className="item">{content.initialDropDownText}</div>
+        }
+
+    }
 
     render(){
         return (
             <div className="ui middle aligned animated list">
                 <div className="item">
-                    <img className="ui avatar image" src="/images/avatar/small/helen.jpg"/>
                     <div className="content">
-                    <div className="header">Helen</div>
-                    </div>
-                </div>
-                <div className="item">
-                    <img className="ui avatar image" src="/images/avatar/small/christian.jpg"/>
-                    <div className="content">
-                    <div className="header">Christian</div>
-                    </div>
-                </div>
-                <div className="item">
-                    <img className="ui avatar image" src="/images/avatar/small/daniel.jpg"/>
-                    <div className="content">
-                    <div className="header">Daniel</div>
+                    <div className="header">You selected: </div>
                     </div>
                 </div>
             </div>
@@ -28,4 +40,12 @@ class SearchResults extends React.Component {
     }
 }
 
-export default SearchResults;
+
+const mapStateToProps = (state) => {
+    debugger;
+    return {
+        selectedWord: state.selectedWord
+    };
+};
+
+export default connect(mapStateToProps)(SearchResults);
