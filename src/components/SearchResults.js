@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import content from '../locale/translationsource';
 class SearchResults extends React.Component {
     state = {
-       selectedWord: ""
+       selectedWord: {}
     }
 
     componentDidUpdate = (previousProps, prevState, snapshot) => {
@@ -42,7 +42,6 @@ class SearchResults extends React.Component {
 
 
 const mapStateToProps = (state) => {
-    debugger;
     return {
         selectedWord: state.selectedWord
     };

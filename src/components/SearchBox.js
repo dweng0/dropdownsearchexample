@@ -12,6 +12,7 @@ class SearchBox extends React.Component {
         active: false,
         searchableArray: [],
         filteredList: [],
+        placholderText: ""
     }
 
     constructor(props){
@@ -66,10 +67,11 @@ class SearchBox extends React.Component {
 
     componentDidUpdate = (previousProps, prevState, snapshot) => {
         if(this.props.searchableArray.length !== previousProps.searchableArray.length)
-        {
+        {   
             this.setState({
                 searchableArray: this.props.searchableArray,
-                filteredResults: this.props.searchableArray
+                filteredResults: this.props.searchableArray,
+                placholderText: content.searchPlaceholder
             });
         }
 
@@ -88,7 +90,7 @@ class SearchBox extends React.Component {
             <div className={this.setCssClassByState()} onClick={this.searchClicked} onBlur={this.onBlur} >
                 <i className="dropdown icon"></i>
                 <input name="wordQuery" type="hidden" value={this.props.query.name} />
-                <input value={this.props.query} className="search" autoComplete="off" name="wordQuery" tabIndex="0" placeholder={content.searchPlaceholder} onChange={(event) => {this.props.updateSearch(event.target.value);}}/>
+                <input value={this.props.query} className="search" autoComplete="off" name="wordQuery" placeholder={this.state.placholderText} onChange={(event) => {this.props.updateSearch(event.target.value);}}/>
                 <div className={this.setMenuCssClassByState()} style={{display: (this.state.active) ? "block!important" : "none"}}>
                     {this.getsearchableArray()}
                 </div>
