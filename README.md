@@ -1,7 +1,5 @@
 ##
-Please write a program to count the number of instances of each word in a text file.
-The solution should list the top 10 words along with the number of occurrences.
-
+An upload component with a search/list component that are updated via redux state.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
